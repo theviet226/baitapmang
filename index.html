@@ -32,9 +32,10 @@
                                 <div class="col-12 col-lg-6">
                                     <button class="btn btn--primary me-1 mb-1" type="button" onclick="getNum()">Thêm
                                         số</button>
-                                    <button class="btn btn--primary me-1 mb-1" type="reset" onclick="reset()">Reset</button>
+                                    <button class="btn btn--primary me-1 mb-1" type="reset" id="resetButton"
+                                        onclick="reset()">Reset</button>
                                 </div>
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-warning" role="alert">
                                     👉<span id="txtArray"></span>
                                 </div>
                             </form>
@@ -56,7 +57,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="sum()">Tính tổng</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtSum"></span>
                                                 </div>
                                             </form>
@@ -80,7 +81,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="count()">Đếm số</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtCount"></span>
                                                 </div>
                                             </form>
@@ -104,7 +105,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="findMin()">Tìm số nhỏ nhất</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtMin"></span>
                                                 </div>
                                             </form>
@@ -128,7 +129,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="findMinPos()">Tìm số dương nhỏ nhất</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtMinPos"></span>
                                                 </div>
                                             </form>
@@ -151,7 +152,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="findEven()">Tìm số chẳn cuối cùng</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtEven"></span>
                                                 </div>
                                             </form>
@@ -182,7 +183,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="changePos()">Đổi chỗ</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtChangePos"></span>
                                                 </div>
                                             </form>
@@ -205,7 +206,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="shortPos()">Sắp xếp</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtIncrease"></span>
                                                 </div>
                                             </form>
@@ -228,7 +229,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="findPrime()">Tìm số nguyên tố</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtPrime"></span>
                                                 </div>
                                             </form>
@@ -256,14 +257,14 @@
                                                         onclick="getFloat()">Thêm
                                                         số</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtArrayFloat"></span>
                                                 </div>
                                                 <div class="col-12 col-lg-6">
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="findInt()">Đếm số nguyên</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtInt"></span>
                                                 </div>
                                             </form>
@@ -286,7 +287,7 @@
                                                     <button class="btn btn--primary me-1 mb-1" type="button"
                                                         onclick="compareNum()">So sánh</button>
                                                 </div>
-                                                <div class="alert alert-success" role="alert">
+                                                <div class="alert alert-warning" role="alert">
                                                     👉<span id="txtCompare"></span>
                                                 </div>
                                             </form>
@@ -305,7 +306,126 @@
 
 
     </div>
-    
+    <script>
+        var numBer = [];
+        function getNum() {
+            var num = Number(document.getElementById('inputNum').value);
+            numBer.push(num);
+            document.getElementById('txtArray').innerHTML = numBer;
+        }
+
+        function sum() {
+            var sum = 0;
+            for (var i = 0; i < numBer.length; i++) {
+                if (numBer[i] > 0) {
+                    sum += numBer[i];
+                }
+            }
+            document.getElementById('txtSum').innerHTML = "Tổng các số dương: " + sum;
+        }
+
+        function count() {
+            var count = 0;
+            for (var i = 0; i < numBer.length; i++) {
+                if (numBer[i] > 0) {
+                    count++
+                }
+            }
+            document.getElementById('txtCount').innerHTML = "Số dương: " + count;
+        }
+
+        function findMin() {
+            var min = numBer[0];
+            for (var i = 0; i < numBer.length; i++) {
+                if (min > numBer[i]) {
+                    min = numBer[i];
+                }
+            }
+            document.getElementById('txtMin').innerHTML = "Số nhỏ nhất: " + min;
+        }
+        function findMinPos() {
+            var minPos = numBer[0];
+            for (var i = 0; i < numBer.length; i++) {
+                if (numBer[i] > 0 && minPos > numBer[i]) {
+                    minPos = numBer[i];
+                }
+            }
+            document.getElementById('txtMinPos').innerHTML = "Số dương nhỏ nhất: " + minPos;
+        }
+        function findEven() {
+            var even = '';
+            for (var i = numBer.length - 1; i >= 0; i--) {
+                if (numBer[i] % 2 == 0) {
+                    even = numBer[i];
+                    break;
+                }
+            }
+            document.getElementById('txtEven').innerHTML = "Số chẳn cuối cùng: " + even;
+        }
+
+        function changePos() {
+            var index1 = document.getElementById('inputIndex1').value;
+            var index2 = document.getElementById('inputIndex2').value;
+
+            var temp = numBer[index1];
+            numBer[index1] = numBer[index2];
+            numBer[index2] = temp;
+
+
+            document.getElementById('txtChangePos').innerHTML = "Mảng sau khi đổi: " + numBer;
+        }
+
+
+        function shortPos() {
+            var shortPos = numBer.slice();
+            shortPos.sort(function (a, b) {
+                return a - b;
+            });
+            document.getElementById('txtIncrease').innerHTML = "Hàm sau khi sắp xếp: " + shortPos;
+        }
+
+        function isPrime(num) {
+            if (num < 2) {
+                return false;
+            }
+            for (var i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    return false;
+                }
+            }
+            return true
+        }
+
+        function findPrime() {
+            var firstPrime = -1;
+            for (var i = 0; i < numBer.length; i++) {
+                if (isPrime(numBer[i])) {
+                    firstPrime = numBer[i];
+                    break;
+                }
+            }
+            document.getElementById('txtPrime').innerHTML = firstPrime;
+
+
+        }
+        var numFloat = [];
+        function getFloat() {
+            var float = Number(document.getElementById('inputFloat').value);
+            numFloat.push(float);
+            document.getElementById('txtArrayFloat').innerHTML = numFloat;
+        }
+
+        function findInt() {
+            var countInt = 0;
+            for (var i = 0; i < numFloat.length; i++) {
+                if (Number.isInteger(numFloat[i])) {
+                    countInt++;
+                }
+            }
+            document.getElementById('txtInt').innerHTML = "Số nguyên: " + countInt;
+        }
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
