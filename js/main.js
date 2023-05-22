@@ -150,6 +150,26 @@ function findInt() {
     document.getElementById('txtInt').innerHTML = "Số nguyên: " + countInt;
 }
 
+function compareNum() {
+    var soDuong = 0;
+    var soAm = 0;
+
+    for (var i = 0; i < numBer.length; i++) {
+        if (numBer[i] > 0) {
+            soDuong++;
+        } else if (numBer[i] < 0) {
+            soAm++;
+        }
+    }
+
+    if (soDuong > soAm) {
+        document.getElementById('txtCompare').innerHTML = "Số lượng số dương nhiều hơn số lượng số âm.";
+    } else if (soDuong < soAm) {
+        document.getElementById('txtCompare').innerHTML = "Số lượng số dương ít hơn số lượng số âm."
+    } else {
+        document.getElementById('txtCompare').innerHTML = "Số lượng số dương và số âm bằng nhau."
+    }
+}
 
 //So sánh số dương và số âm
 function compareNum() {
